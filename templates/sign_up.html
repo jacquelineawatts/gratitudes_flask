@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Registration Page {% endblock %}
+
+{% block body %}
+<div class="container">
+  <h4>Create a Profile</h4>
+  <form action="/add_user" method="POST">
+    <label for="first_name">First Name: </label>
+    <input type="text" name="first_name" id="first_name"><br>
+    
+    <label for="last_name">Last Name: </label>
+    <input type="text" name="last_name" id="last_name"><br>
+    
+    <label for="username">Username: </label>
+    <input type="tetx" name="username" id="username"><br>
+    
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email"><br>
+    
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password"><br>
+
+    <label for="password_confirmed">Confirm Password: </label>
+    <input type="password" name="password_confirmed" id="password_confirmed"><br>
+    
+    <label for="location">Location: </label>
+    <input type="text" name="location" id="location"><br>
+    
+    <label for="profile_image">Profile Image*: </label>
+    <input type="text" name="profile_image" id="profile_image"><br>
+    
+    <p class="footnote">*This is super hacky for the moment, just enter an img URL from your FB profile please.</p>
+    <input type="submit" id="submit" value="Submit">
+
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+  <title>Homepage</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <!-- Show flashed messages -->
+  <div>
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <div class="flash-msgs">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-offset-3 col-xs-6 col-sm-offset-4 col-sm-4">
+        <img id="logo_homepage" src="static/noun_590865_woutcitation.png">
+        <center><h4>Welcome to Gratitudes</h4></center>
+        <div>
+          <center><button id="modal" data-toggle="modal" data-target="#loginModal">Log In</button>
+          <button id="modal" data-toggle="modal" data-target="#signupModal">Sign Up</button></center>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Login Modal -->
+    <div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Login</h4>
+          </div>
+
+          <div class="modal-body">
+            <form id="login" action="/login" method="POST">
+              <div class="form-group">
+                <label class="sr-only" for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword3">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+
+
+<!-- Sign Up Modal -->
+    <div class="modal fade bs-example-modal-sm" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Sign Up</h4>
+          </div>
+
+          <div class="modal-body">
+            <form action="/add_user" method="POST">
+              <label for="first_name">First Name: </label>
+              <input type="text" name="first_name" id="first_name"><br>
+              
+              <label for="last_name">Last Name: </label>
+              <input type="text" name="last_name" id="last_name"><br>
+              
+              <label for="username">Username: </label>
+              <input type="tetx" name="username" id="username"><br>
+              
+              <label for="email">Email: </label>
+              <input type="email" name="email" id="email"><br>
+              
+              <label for="password">Password: </label>
+              <input type="password" name="password" id="password"><br>
+
+              <label for="password_confirmed">Confirm Password: </label>
+              <input type="password" name="password_confirmed" id="password_confirmed"><br>
+              
+              <label for="location">Location: </label>
+              <input type="text" name="location" id="location"><br>
+              
+              <label for="profile_image">Profile Image*: </label>
+              <input type="text" name="profile_image" id="profile_image"><br>
+              
+              <p class="footnote">*This is super hacky for the moment, just enter an img URL from your FB profile please.</p>
+              <input type="submit" id="submit" value="Submit">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>

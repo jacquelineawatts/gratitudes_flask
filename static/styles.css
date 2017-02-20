@@ -1,0 +1,98 @@
+.navbar {
+  background-color: #ffc600;
+  color: black;
+}
+
+.navbar li {
+  color: black;
+  font-weight: bold;
+}
+
+img.logo {
+  height: 30px;
+}
+
+#logo_homepage {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.footnote {
+  font-size: 75%;
+  font-style: italic;
+}
+
+label {
+  margin: 10px 10px 0 0;
+}
+
+button, input[type="submit"] {
+  margin-top: 10px;
+  background-color: #ffc600;
+  font-weight: bold;
+  color: black;
+  border: none;
+  padding: 5px 8px 5px 8px;
+  border-radius: 5px
+}
+
+button>a {
+  color: black;
+}
+
+#modal:hover {
+  text-decoration: underline;
+}
+
+button>a:visited {
+  color: black;
+}
+
+.flash-msgs {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 15px 0 15px 10px;
+  margin: -20px 0 10px 0;
+}
+
+.profile-img {
+  border-radius: 15px;
+  width: 100px;
+}
+
+h4:before {
+  content: "---- ";
+  letter-spacing: -2px;
+}
+
+h4:after {
+  content: " ----";
+  letter-spacing: -2px; 
+}
+
+.myGratitudes {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  padding: 1em 2em 1em 2em;
+  border-radius: 15px;
+  background-color: #F9E79F;
+}
+
+.date {
+  font-size: 75%;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.set p {
+  padding-top: 2px;
+  font-size: 80%
+}
+
+.set:after {
+ content: "-------------------------------------------------------";
+ text-align: center;
+ font-weight: bolder;
+ letter-spacing: -2px;
+}
