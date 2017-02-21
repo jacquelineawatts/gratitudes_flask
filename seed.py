@@ -15,6 +15,7 @@ jacquelope = User(first_name='Jacqui',
                   email='jacquelineawatts@gmail.com',
                   password='tester',
                   location='San Francisco',
+                  date_joined=datetime.today().date(),
                   profile_image='https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-1/p320x320/12928314_10103831599186320_7570467518951458496_n.jpg?oh=809c84d892fe71b3a0a721162f1cb309&oe=58A9E89E')
 
 kaylala = User(first_name='Michaela',
@@ -23,6 +24,7 @@ kaylala = User(first_name='Michaela',
                email='michaeladamico@gmail.com',
                password='testing',
                location='Tena, Ecuador',
+               date_joined=datetime.today().date(),
                profile_image='https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-1/p320x320/10590394_10102505355658989_740112908400003827_n.jpg?oh=bec858284ab0f8f888b79a8aa0d0c70e&oe=58AB7845')
 
 db.session.add(jacquelope)
@@ -45,19 +47,19 @@ db.session.add(entry2)
 db.session.commit()
 
 grat1 = Gratitude(text="Setting up the xmas tree w/lights, the house smelling of pine, listening to Arcade Fire w/Geoff and Mike.",
-                  user_id=1)
+                  entry_id=1)
 grat2 = Gratitude(text="Awesome Bailee xmas party!",
-                  user_id=1)
+                  entry_id=1)
 grat3 = Gratitude(text="That I get to work next to Kristin on this website build, she rocks :)",
-                  user_id=1)
+                  entry_id=1)
 
 
 grat4 = Gratitude(text="The huge stack of crossword puzzles that mom's saved for me from the Projo.",
-                  user_id=2)
+                  entry_id=2)
 grat5 = Gratitude(text="Grandma getting so happy and excited to hear me play the piano.",
-                  user_id=2)
+                  entry_id=2)
 grat6 = Gratitude(text="Getting to sleep in the living room with my own christmas tree.",
-                  user_id=2)
+                  entry_id=2)
 
 db.session.add(grat1)
 db.session.add(grat2)
