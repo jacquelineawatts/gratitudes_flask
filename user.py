@@ -1,5 +1,6 @@
 from model import db, connect_to_db
 from datetime import datetime
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
 
 class User(db.Model):
@@ -26,7 +27,10 @@ class User(db.Model):
     def get_by_username(cls, user_id):
         """Gets the user object given a username."""
 
-        return User.query.get(user_id)
+        try:
+            return User.query.filter_by(user_id=user_id).one()
+        except NoResultFound:
+            print "No user found."
 
     @classmethod
     def add_new_user(cls,

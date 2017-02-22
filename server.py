@@ -2,9 +2,9 @@ from flask import Flask, request, render_template, session, flash, redirect, url
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 from model import connect_to_db
-# import user
-# import entry
-# import datetime
+from user import User
+from entry import Entry, Gratitude
+import datetime
 
 app = Flask(__name__)
 
@@ -81,21 +81,21 @@ def process_login():
     dictionary, look up the user, and store them in the session.
     """
 
-    if request.form.get('username') not in user.users:
-        flash("There is no account associated with that username. Please sign up!")
-        return redirect('/')
+    username = request.form.get('username')
+    user = User.get_by_username(username)
 
-    else:
-        profile_user = user.get_by_username(request.form.get('username'))
-
-        if request.form.get('password') == profile_user.password:
-            session['logged_in_customer_email'] = profile_user.email
+    if user:
+        if request.form.get('password') == user.password:
+            session['logged_in_customer_email'] = user.email
             flash("You've successfully logged in!")
-            return redirect(url_for('show_profile', username=profile_user.username))
+            return redirect(url_for('show_profile', username=user.username))
 
-        elif request.form.get('password') != profile_user.password:
+        elif request.form.get('password') != user.password:
             flash("You entered your password incorrectly. Please try again.")
             return redirect('/')
+    else:
+        flash("There is no account associated with that username. Please sign up!")
+        return redirect('/')
 
 
 @app.route("/logout")
