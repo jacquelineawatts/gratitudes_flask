@@ -24,11 +24,11 @@ class User(db.Model):
         return "{}'s Info: {} {}, {}".format(self.username, self.first_name, self.last_name, self.email)
 
     @classmethod
-    def get_by_username(cls, user_id):
+    def get_by_username(cls, username):
         """Gets the user object given a username."""
 
         try:
-            return User.query.filter_by(user_id=user_id).one()
+            return User.query.filter_by(username=username).one()
         except NoResultFound:
             print "No user found."
 
