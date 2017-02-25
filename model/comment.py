@@ -1,6 +1,6 @@
-from model import db, connect_to_db
-from entry import Gratitude
-from user import User
+from model.model import db, connect_to_db
+from model.entry import Gratitude
+from model.user import User
 
 
 class Comment(db.Model):

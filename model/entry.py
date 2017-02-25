@@ -1,4 +1,4 @@
-from model import db, connect_to_db
+from model.model import db, connect_to_db
 from user import User
 import datetime
 

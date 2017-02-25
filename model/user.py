@@ -1,4 +1,4 @@
-from model import db, connect_to_db
+from model.model import connect_to_db, db
 from datetime import datetime
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 

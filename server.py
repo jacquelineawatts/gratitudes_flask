@@ -23,8 +23,8 @@ def index():
 def show_profile(username):
     """Show user profile if logged in."""
 
-    profile_user = user.get_by_username(username)
-    user_entries = entry.find_by_user(username)
+    profile_user = User.get_by_username(username)
+    user_entries = Entry.find_by_user(username)
     return render_template('profile.html', user=profile_user, entries=user_entries)
 
 
@@ -53,15 +53,16 @@ def add_user():
     location = request.form.get('location')
     profile_image = request.form.get('profile_image')
 
-    errors = user.handle_signup_form_errors(first_name, last_name, username, email, password, password_confirmed, location, profile_image)
+    errors = User.handle_signup_form_errors(first_name, last_name, username, email, password, password_confirmed, location, profile_image)
 
     if errors:
         error_message = " ".join(errors)
         flash(error_message)
         return redirect('/sign_up')
 
+    # Can't tell is this here to instantiate new user?
     else:
-        user.users[username] = user.User(first_name, last_name, username, email, password, location, profile_image)
+        User.users[username] = User.User(first_name, last_name, username, email, password, location, profile_image)
         relative_url = "/profile/" + username
         return redirect(relative_url)
 
@@ -108,6 +109,7 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=False)
+
     connect_to_db(app)
     DebugToolbarExtension(app)
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
