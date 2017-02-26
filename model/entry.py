@@ -38,7 +38,7 @@ class Entry(db.Model):
     def find_by_user(cls, user_id):
         """ Return all entries for a provided username."""
 
-        return Entry.query.filter_by(user=user_id).all()
+        return Entry.query.filter_by(user_id=user_id).all()
 
 
 class Gratitude(db.Model):
