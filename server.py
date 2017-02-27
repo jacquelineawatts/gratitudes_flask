@@ -1,9 +1,6 @@
 from flask import Flask, request, render_template, session, flash, redirect, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
-from model.model import connect_to_db
-from model.user import User
-from model.entry import Entry, Gratitude
 import datetime
 
 app = Flask(__name__)
@@ -83,7 +80,7 @@ def process_login():
     """
 
     username = request.form.get('username')
-    user = User.get_by_username(username) 
+    user = User.get_by_username(username)
 
     if user:
         if request.form.get('password') == user.password:
@@ -108,8 +105,11 @@ def logout():
 # ----------------------------- RUN THESE FIRST --------------------------------
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
 
+    from model.model import connect_to_db
+    from model.user import User
+    from model.entry import Entry, Gratitude
     connect_to_db(app)
     DebugToolbarExtension(app)
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
