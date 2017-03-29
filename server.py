@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template, session, flash, redirect, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
+from model.user import User
+from model.entry import Entry, Gratitude
+from model.model import connect_to_db, db
 import datetime
 
 app = Flask(__name__)
@@ -20,16 +23,18 @@ def index():
 def show_profile(username):
     """Show user profile if logged in."""
 
-    profile_user = User.get_by_username(username)
-    user_entries = Entry.find_by_user(username)
-    return render_template('profile.html', user=profile_user, entries=user_entries)
+    user = User.get_by_username(username)
+    user_entries = Entry.find_by_user(user.user_id)
+    return render_template('profile.html', user=user, entries=user_entries)
 
 
 @app.route('/entries')
 def show_entries():
     """Show recent entries, both users and those the user is following."""
 
-    return
+    # user = User.get_by_username(username)
+    # Entry = get_all_entries(username, user.following)
+    # return 
 
 
 @app.route("/sign_up", methods=["GET"])
@@ -80,7 +85,7 @@ def process_login():
     """
 
     username = request.form.get('username')
-    user = User.get_by_username(username)
+    user = User.query.filter_by(username=username).one()
 
     if user:
         if request.form.get('password') == user.password:
@@ -105,12 +110,14 @@ def logout():
 # ----------------------------- RUN THESE FIRST --------------------------------
 
 if __name__ == "__main__":
-    app.run(debug=True)
 
-    from model.model import connect_to_db
-    from model.user import User
-    from model.entry import Entry, Gratitude
+    app.debug = True
+
     connect_to_db(app)
-    DebugToolbarExtension(app)
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
     print 'Connected to DB.'
+
+    DebugToolbarExtension(app)
+    print 'Running toolbar debugger.'
+
+    app.run()

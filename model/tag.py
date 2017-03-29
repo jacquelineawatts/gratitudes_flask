@@ -1,4 +1,4 @@
-from model.model import db, connect_to_db
+from model import db, connect_to_db
 from user import User
 from entry import Gratitude
 
@@ -25,9 +25,3 @@ class Tag(db.Model):
         db.session.commit()
 
         return tag
-
-if __name__ == "__main__":
-
-    from server import app
-    connect_to_db(app)
-    print "Connected to DB."

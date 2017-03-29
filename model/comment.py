@@ -1,6 +1,6 @@
-from model.model import db, connect_to_db
-from model.entry import Gratitude
-from model.user import User
+from model import db, connect_to_db
+from entry import Gratitude
+from user import User
 
 
 class Comment(db.Model):
@@ -28,10 +28,3 @@ class Comment(db.Model):
         db.session.commit()
 
         return comment
-
-
-if __name__ == "__main__":
-
-    from server import app
-    connect_to_db(app)
-    print "Connected to DB."

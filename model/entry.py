@@ -1,4 +1,4 @@
-from model.model import db, connect_to_db
+from model import db, connect_to_db
 from user import User
 import datetime
 
@@ -69,10 +69,3 @@ class Gratitude(db.Model):
         """Returns all gratitudes associated with a given entry."""
 
         return Gratitude.query.filter_by(entry_id=entry_id).all()
-
-
-if __name__ == "__main__":
-
-    from server import app
-    connect_to_db(app)
-    print "Connected to DB."

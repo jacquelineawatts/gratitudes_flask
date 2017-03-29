@@ -35,10 +35,10 @@
           {% else %}
             {% for entry in entries %}
             <div class="set">
-                <p class='date'>{{ entry.date }}</p>
-                <p>{{ entry.grat_1 }}</p>
-                <p>{{ entry.grat_2 }}</p>
-                <p>{{ entry.grat_3 }}</p>
+                <p class='date'>{{ entry.date_posted }}</p>
+                {% for grat in entry.gratitudes %}
+                <p>{{ grat.text }}</p>
+                {% endfor %}
             </div>
             {% endfor %}
           {% endif %}

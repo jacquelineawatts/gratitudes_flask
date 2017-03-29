@@ -1,4 +1,4 @@
-from model.model import connect_to_db, db
+from model import connect_to_db, db
 from datetime import datetime
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from flask import flash
@@ -36,9 +36,11 @@ class User(db.Model):
         """Gets the user object given a username."""
 
         try:
-            return User.query.filter_by(username=username).one()
+            return User.query.filter(User.username == username).one()
+
         except NoResultFound:
             print "No user found."
+            return None
 
     @classmethod
     def add_new_user(cls,
@@ -132,10 +134,3 @@ class Connection(db.Model):
 
         except NoResultFound:
             print "That connection was not in the db."
-
-
-if __name__ == "__main__":
-
-    from server import app
-    connect_to_db(app)
-    print "Connected to DB."
